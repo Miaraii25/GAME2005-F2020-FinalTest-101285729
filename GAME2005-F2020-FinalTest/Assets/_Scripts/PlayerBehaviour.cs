@@ -9,6 +9,8 @@ public class PlayerBehaviour : MonoBehaviour
     public GameObject bullet;
     public int fireRate;
 
+    public float JumpForce;
+    public float MoveSpeed;
 
     public BulletManager bulletManager;
 
@@ -23,7 +25,7 @@ public class PlayerBehaviour : MonoBehaviour
 
     void start()
     {
-
+       
     }
 
     // Update is called once per frame
@@ -99,4 +101,14 @@ public class PlayerBehaviour : MonoBehaviour
         isGrounded = cube.isGrounded;
     }
 
+    private void _Jump()
+    {
+
+        body.velocity = new Vector3(Input.GetAxis("Horizontal") * MoveSpeed, body.velocity.y, Input.GetAxis("Vertical") * MoveSpeed);
+
+        if (Input.GetButtonDown("Jump"))
+        {
+            body.velocity = new Vector3(body.velocity.x, JumpForce, body.velocity.z);
+        }
+    }
 }
